@@ -2,4 +2,5 @@
 
 ## members
 
+- Soma-Tanabe
 - Hashimoto-Yoichi
