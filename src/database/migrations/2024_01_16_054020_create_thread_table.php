@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id('thread_id');
             $table->string('thread_title');
             $table->string('thread_content');
-            $table->id('owner_id');
+            $table->string('owner_id');
             $table->date('created_at');
         });
     }
