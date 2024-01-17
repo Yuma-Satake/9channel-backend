@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-
+use Illuminate\Support\Facades\DB; // Import the DB class
 class ThreadsTableSeeder extends Seeder
 {
     /**
@@ -33,5 +33,7 @@ class ThreadsTableSeeder extends Seeder
                 'created_at' => '2021-01-03',
             ],
         ];
+        // 登録
+        DB::table('threads')->insert($threads); // Use the DB class to insert data into the 'threads' table
     }
 }
