@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('thread', function (Blueprint $table) {
+        Schema::create('threads', function (Blueprint $table) {
             $table->id('thread_id');
             $table->string('thread_title');
             $table->string('thread_content');
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('thread');
+        Schema::dropIfExists('threads');
     }
 };
