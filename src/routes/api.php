@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ThreadController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -19,3 +20,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/threads', 'App\Http\Controllers\ThreadController@getAllThreads');
+
+Route::get('/latest', [ThreadController::class,'getLatestThreads']);
