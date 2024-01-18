@@ -18,6 +18,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/threads', function(){
-    return \App\Models\Thread::all();
-});
+Route::get('/threads', 'App\Http\Controllers\ThreadController@getAllThreads');
