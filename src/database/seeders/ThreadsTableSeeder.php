@@ -12,8 +12,12 @@ class ThreadsTableSeeder extends Seeder
      */
     public function run(): void
     {   
-        // 既存のデータを初期化する
+        //外部キーのチェックを一時的に無効にする
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+        // テーブルのクリア
         DB::table('threads')->truncate();
+        //外部キーのチェックを元に戻す
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
         // 初期データ用意（列名をキーとする連想配列）
         $threads = [
