@@ -27,13 +27,6 @@ class ThreadController extends Controller
         return Thread::find($id);
     }
     
-    public function createThread() {
-        //スレッド作成画面を表示する
-        //暫定でcreateThread
-        return 'createThread';
-    }
-
-
     /*
     *thredsテーブルにrowを追加する
     * @param Request $request

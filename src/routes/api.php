@@ -23,5 +23,5 @@ Route::get('/threads', 'App\Http\Controllers\ThreadController@getAllThreads');
 
 Route::get('/latest', [ThreadController::class,'getLatestThreads']);
 
-Route::get('/createThread', [ThreadController::class,'createThread']);
+
 Route::post('/createThread', [ThreadController::class,'createdThread']);
