@@ -26,6 +26,24 @@ class ThreadController extends Controller
     {
         return Thread::find($id);
     }
+    
+    /*
+    *thredsテーブルにrowを追加する
+    * @param Request $request
+    * @return Thread
+    $reuestに入っている値を全てthreadsテーブルに追加する
+     */
+    public function createdThread(Request $request)
+    {
+        $thread = new Thread();
+        $thread->thread_title = $request->thread_title;
+        $thread->thread_content = $request->thread_content;
+        $thread->owner_id = $request->owner_id;
+        $thread->created_at = $request->created_at;
+        $thread->img_url = $request->img_url;
+        $thread->save();
+        return $thread;
+    }
 }
 
 

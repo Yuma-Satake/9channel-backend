@@ -22,3 +22,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/threads', 'App\Http\Controllers\ThreadController@getAllThreads');
 
 Route::get('/latest', [ThreadController::class,'getLatestThreads']);
+
+
+Route::post('/createThread', [ThreadController::class,'createdThread']);
