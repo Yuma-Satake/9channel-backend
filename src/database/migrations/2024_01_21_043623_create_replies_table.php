@@ -12,9 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('replies', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('thread_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->id('reply_id');
+            $table->foreignId('thread_id')->constrained('threads' , 'thread_id')->cascadeOnDelete();
+            $table->foreignId('user_id')->constrained('users' , 'user_id')->cascadeOnDelete();
             $table->text('body');
             $table->timestamps();
         });

@@ -29,7 +29,7 @@ class ThreadController extends Controller
     
     public function createThread() {
         //スレッド作成画面を表示する
-        //暫定でcreateThreadを表示しています
+        //暫定でcreateThread
         return 'createThread';
     }
 
