@@ -22,9 +22,15 @@ class ThreadController extends Controller
         return Thread::orderBy('created_at', 'desc')->take(5)->get();
     }
 
-    public function getThread($id)
+    /*
+     * getThread
+     * クエリパラメータで指定されたthread_idのthreadを取得する  
+     * @param Request $request
+     * @return Thread
+     */
+    public function getThread(Request $request)
     {
-        return Thread::find($id);
+        return Thread::where('thread_id', $request->thread_id)->first();
     }
     
     /*
