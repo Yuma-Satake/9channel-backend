@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('thread_id')->constrained('threads' , 'thread_id')->cascadeOnDelete();
             $table->foreignId('user_id')->constrained('users' , 'user_id')->cascadeOnDelete()->nullable();
             $table->text('body');
-            $table->timestamps('created_at');
+            $table->timestamps();
         });
     }
 
