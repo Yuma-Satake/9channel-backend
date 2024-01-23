@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class ReplyTableSeeder extends Seeder
 {
@@ -34,9 +35,10 @@ class ReplyTableSeeder extends Seeder
                 'user_id' => null,
                 'body' => 'ワロタ',
                 'created_at' => '2024-01-09',
-            ],
-            
+            ],    
         ];
 
+        // 登録
+        DB::table('replies')->insert($replies);
     }
 }
