@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 class ReplyController extends Controller
 {
+
     //外部キー制約を遵守するために、thread_idとuser_idを指定して、リプライを作成する   
     public function createReply(Request $request)
     {
@@ -28,4 +29,15 @@ class ReplyController extends Controller
         ], 200);
     }
     
+    //repliesテーブルから全てのデータを取得する
+    public function getAllReplies()
+    {
+        return Reply::all();
+    }
+
+    //repliesテーブルからtread_idが一致するものを取得する
+    public function getReply(Request $request)
+    {
+        return Reply::where('thread_id', $request->thread_id)->get();
+    }
 }
