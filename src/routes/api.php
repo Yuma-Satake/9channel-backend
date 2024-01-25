@@ -5,6 +5,7 @@ use App\Http\Controllers\ReplyController;
 use App\Models\Reply;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,4 +32,5 @@ Route::get('/reply', [ReplyController::class,'getReply']);
 
 Route::post('/createReply', [ReplyController::class,'createReply']);
 
+Route::post('/createUser', [UserController::class,'createdUser']);
 Route::post('/createThread', [ThreadController::class,'createdThread']);
