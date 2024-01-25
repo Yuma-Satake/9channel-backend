@@ -48,7 +48,7 @@ class UserController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         
-        // try checkで失敗したら400を成功したら200を返す
+        // try catchで失敗したら400を成功したら200を返す
         try {
             $user->save();
             return response()->json([
