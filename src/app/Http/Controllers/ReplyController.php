@@ -46,6 +46,12 @@ class ReplyController extends Controller
     //repliesテーブルからtread_idが一致するものを取得する
     public function getReply(Request $request)
     {
+        // リクエストのバリデーション
+        if (empty($request['thread_id'])) {
+            return response()->json([
+                'message' => 'thread_id is empty',
+            ], 500);
+        }
         $reply = Reply::where('thread_id', $request->thread_id)->get();
         return response()->json([
             'message' => 'reply found successfully',
