@@ -43,6 +43,13 @@ class ThreadController extends Controller
      */
     public function getThread(Request $request)
     {
+        //バリデーションチェック
+        if (empty($request->thread_id)) {
+            return response()->json([
+                'message' => 'thread_id is empty'
+            ], 500);
+        }
+
         $thread = Thread::where('thread_id', $request->thread_id)->first();
 
         if (empty($thread)) {
@@ -66,6 +73,13 @@ class ThreadController extends Controller
      */
     public function createdThread(Request $request)
     {
+        //バリデーションチェック
+        if (empty($request->thread_title) || empty($request->thread_content) || empty($request->owner_id) || empty($request->created_at)) {
+            return response()->json([
+                'message' => 'thread_title or thread_content or owner_id or created_at is empty'
+            ], 500);
+        }
+
         $thread = new Thread();
         $thread->thread_title = $request->thread_title;
         $thread->thread_content = $request->thread_content;
