@@ -15,6 +15,13 @@ class UserController extends Controller
      */
     public function getUser(Request $request)
     {
+        //バリデーションチェック
+        if (empty($request->email)) {
+            return response()->json([
+                'message' => 'email is empty'
+            ], 500);
+        }
+        //メールアドレスが一致したユーザー情報を取得する
         $user = User::where('email', $request->email)->first();
         if (empty($user)) {
             return response()->json([
@@ -30,6 +37,13 @@ class UserController extends Controller
     // users_tableにデータを追加する
     public function createdUser(Request $request)
     {
+        // リクエストのバリデーション
+        if (empty($request['name']) || empty($request['email'])) {
+            return response()->json([
+                'message' => 'name or email is empty',
+            ], 500);
+        }
+        // ユーザーを作成
         $user = new User();
         $user->name = $request->name;
         $user->email = $request->email;
