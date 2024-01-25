@@ -34,17 +34,19 @@ class UserController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->save();
-
-        // 成功したならステータスコード201を返す
-        return response()->json([
-            'message' => 'user created successfully',
-            'user' => $user
-        ], 201);
         
-        // 失敗したらステータスコード400を返す
-        return response()->json([
-            'message' => 'user created failed'
-        ], 400);
+        // try checkで失敗したら400を成功したら200を返す
+        try {
+            $user->save();
+            return response()->json([
+                'message' => 'user created successfully',
+                'user' => $user
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'user created failed'
+            ], 400);
+        }
     }
 
 }
