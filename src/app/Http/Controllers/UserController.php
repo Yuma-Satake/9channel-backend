@@ -21,7 +21,11 @@ class UserController extends Controller
                 'message' => 'user not found'
             ], 401);
         }
-        return $user;
+        //ステータスコード200とユーザー情報をjson形式で返す
+        return response()->json([
+            'message' => 'user found successfully',
+            'user' => $user
+        ], 200);
     }
     
 
