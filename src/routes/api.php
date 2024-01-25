@@ -29,6 +29,7 @@ Route::get('/latest', [ThreadController::class,'getLatestThreads']);
 
 Route::get('/thread', [ThreadController::class,'getThread']);
 Route::get('/reply', [ReplyController::class,'getReply']);
+Route::get('/user', [UserController::class,'getUser']);
 
 Route::post('/createReply', [ReplyController::class,'createReply']);
 
