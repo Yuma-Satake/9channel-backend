@@ -27,6 +27,24 @@ class UserController extends Controller
             'user' => $user
         ], 200);
     }
-    
+    // users_tableにデータを追加する
+    public function createdUser(Request $request)
+    {
+        $user = new User();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->save();
+
+        // 成功したならステータスコード201を返す
+        return response()->json([
+            'message' => 'user created successfully',
+            'user' => $user
+        ], 201);
+        
+        // 失敗したらステータスコード400を返す
+        return response()->json([
+            'message' => 'user created failed'
+        ], 400);
+    }
 
 }
