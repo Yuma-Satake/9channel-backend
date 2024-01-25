@@ -22,11 +22,19 @@ class ReplyController extends Controller
         $reply->thread_id = $request->thread_id;
         $reply->user_id = $request->user_id;
         $reply->body = $request->body;
-        $reply->save();
-        // リプライが作成されたら、201ステータスコードを返す
-        return response()->json([
-            'message' => 'reply created successfully'
-        ], 200);
+
+        //try catchで失敗したら400を成功したら200を返す
+        try {
+            $reply->save();
+            return response()->json([
+                'message' => 'reply created successfully',
+                'reply' => $reply
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'reply created failed'
+            ], 400);
+        }
     }
     
     //repliesテーブルから全てのデータを取得する
@@ -38,6 +46,10 @@ class ReplyController extends Controller
     //repliesテーブルからtread_idが一致するものを取得する
     public function getReply(Request $request)
     {
-        return Reply::where('thread_id', $request->thread_id)->get();
+        $reply = Reply::where('thread_id', $request->thread_id)->get();
+        return response()->json([
+            'message' => 'reply found successfully',
+            'reply' => $reply
+        ], 200);
     }
 }
