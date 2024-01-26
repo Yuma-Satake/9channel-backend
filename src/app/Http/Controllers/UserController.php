@@ -21,18 +21,18 @@ class UserController extends Controller
                 'message' => 'email is empty'
             ], 500);
         }
-        //メールアドレスが一致したユーザー情報を取得する
-        $user = User::where('email', $request->email)->first();
-        if (empty($user)) {
+        //try catchで例外処理を行う
+        try {
+            $user = User::where('email', $request->email)->first();
+            return response()->json([
+                'message' => 'user found successfully',
+                'user' => $user
+            ], 200);
+        } catch (\Exception $e) {
             return response()->json([
                 'message' => 'user not found'
             ], 401);
         }
-        //ステータスコード200とユーザー情報をjson形式で返す
-        return response()->json([
-            'message' => 'user found successfully',
-            'user' => $user
-        ], 200);
     }
     // users_tableにデータを追加する
     public function createdUser(Request $request)
