@@ -12,7 +12,7 @@ class ReplyController extends Controller
     public function createReply(Request $request)
     {
         // リクエストのバリデーション
-        if (empty($request['thread_id']) || empty($request['body'])) {
+        if (empty($request->thread_id) || empty($request->body)) {
             return response()->json([
                 'message' => 'thread_id or body is empty',
             ], 500);
@@ -47,7 +47,7 @@ class ReplyController extends Controller
     public function getReply(Request $request)
     {
         // リクエストのバリデーション
-        if (empty($request['thread_id'])) {
+        if (empty($request->thread_id)) {
             return response()->json([
                 'message' => 'thread_id is empty',
             ], 500);
