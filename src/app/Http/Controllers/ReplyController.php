@@ -52,10 +52,17 @@ class ReplyController extends Controller
                 'message' => 'thread_id is empty',
             ], 500);
         }
-        $reply = Reply::where('thread_id', $request->thread_id)->get();
-        return response()->json([
-            'message' => 'reply found successfully',
-            'reply' => $reply
-        ], 200);
+        //try catchで例外処理を行う
+        try {
+            $reply = Reply::where('thread_id', $request->thread_id)->get();
+            return response()->json([
+                'message' => 'reply found successfully',
+                'reply' => $reply
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'reply not found'
+            ], 500);
+        }
     }
 }
