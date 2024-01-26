@@ -20,18 +20,19 @@ class ThreadController extends Controller
    */ 
     public function getLatestThreads()
     {
-        $threads = Thread::orderBy('created_at', 'desc')->take(5)->get();
-
-        if (empty($threads)) {
+        //try catchで例外処理を行う
+        try{
+            $threads = Thread::orderBy('created_at', 'desc')->take(5)->get();
+            return response()->json([
+                'message' => 'thread found successfully',
+                'threads' => $threads
+            ], 200);
+        } catch (\Exception $e) {
             return response()->json([
                 'message' => 'thread not found'
             ], 500);
         }
-
-        return response()->json([
-            'message' => 'thread found successfully',
-            'thread' => $threads
-        ], 200);
+        
     }
 
     /*
@@ -50,18 +51,18 @@ class ThreadController extends Controller
             ], 500);
         }
 
-        $thread = Thread::where('thread_id', $request->thread_id)->first();
-
-        if (empty($thread)) {
+        try
+        {
+            $thread = Thread::where('thread_id', $request->thread_id)->first();
+            return response()->json([
+                'message' => 'thread found successfully',
+                'thread' => $thread
+            ], 200);
+        } catch (\Exception $e) {
             return response()->json([
                 'message' => 'thread not found'
             ], 500);
         }
-
-        return response()->json([
-            'message' => 'thread found successfully',
-            'thread' => $thread
-        ], 200);
     }
     
     /*
@@ -89,15 +90,14 @@ class ThreadController extends Controller
 
         try {
             $thread->save();
+            return response()->json([
+            'message' => 'thread created successfully'
+        ], 201);
         } catch (\Exception $e) {
             return response()->json([
                 'message' => 'thread created failed'
             ], 500);
         }
-        
-        return response()->json([
-            'message' => 'thread created successfully'
-        ], 201);
     }
 }
 
