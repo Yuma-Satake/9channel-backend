@@ -36,7 +36,7 @@ class ReplyController extends Controller
             ], 400);
         }
     }
-    
+
     //repliesテーブルから全てのデータを取得する
     public function getAllReplies()
     {
