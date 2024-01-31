@@ -17,11 +17,11 @@ class ThreadController extends Controller
    * 最新のthreadを5件取得する
    * ステータスコード200とともにjson形式で返す
    * 取得に失敗したらステータスコード500を返す
-   */ 
+   */
     public function getLatestThreads()
     {
         //try catchで例外処理を行う
-        try{
+        try {
             $threads = Thread::orderBy('created_at', 'desc')->take(5)->get();
             return response()->json([
                 'message' => 'thread found successfully',
@@ -32,7 +32,6 @@ class ThreadController extends Controller
                 'message' => 'thread not found'
             ], 500);
         }
-        
     }
 
     /*
@@ -51,8 +50,7 @@ class ThreadController extends Controller
             ], 500);
         }
 
-        try
-        {
+        try {
             $thread = Thread::where('thread_id', $request->thread_id)->first();
             return response()->json([
                 'message' => 'thread found successfully',
@@ -64,10 +62,7 @@ class ThreadController extends Controller
             ], 500);
         }
     }
-    
-
-
-
+  
     public function createThread()
     {
         return null;
@@ -82,7 +77,7 @@ class ThreadController extends Controller
     public function createdThread(Request $request)
     {
         //バリデーションチェック
-        if (empty($request->thread_title) || empty($request->thread_content) || empty($request->owner_id) || empty($request->created_at)) {
+        if (empty($request->thread_title) || empty($request->thread_content)) {
             return response()->json([
                 'message' => 'thread_title or thread_content or owner_id or created_at is empty'
             ], 500);
@@ -92,14 +87,13 @@ class ThreadController extends Controller
         $thread->thread_title = $request->thread_title;
         $thread->thread_content = $request->thread_content;
         $thread->owner_id = $request->owner_id;
-        $thread->created_at = $request->created_at;
         $thread->img_url = $request->img_url;
 
         try {
             $thread->save();
             return response()->json([
-            'message' => 'thread created successfully'
-        ], 201);
+                'message' => 'thread created successfully'
+            ], 201);
         } catch (\Exception $e) {
             return response()->json([
                 'message' => 'thread created failed'
@@ -107,5 +101,3 @@ class ThreadController extends Controller
         }
     }
 }
-
-
