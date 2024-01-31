@@ -31,7 +31,11 @@ Route::get('/thread', [ThreadController::class,'getThread']);
 Route::get('/reply', [ReplyController::class,'getReply']);
 Route::get('/user', [UserController::class,'getUser']);
 
-Route::post('/createReply', [ReplyController::class,'createReply']);
+Route::get('/createReply', [ReplyController::class,'createReply']);
+Route::post('/createReply', [ReplyController::class,'createdReply']);
 
+Route::get('/createUser', [UserController::class,'createUser']);
 Route::post('/createUser', [UserController::class,'createdUser']);
+
+Route::get('/createThread', [ThreadController::class,'createThread']);
 Route::post('/createThread', [ThreadController::class,'createdThread']);
