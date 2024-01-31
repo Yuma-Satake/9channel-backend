@@ -62,7 +62,11 @@ class ThreadController extends Controller
             ], 500);
         }
     }
-
+  
+    public function createThread()
+    {
+        return null;
+    }
     /*
     *thredsテーブルにrowを追加する
     * @param Request $request

@@ -34,6 +34,12 @@ class UserController extends Controller
             ], 401);
         }
     }
+
+    
+    public function createUser()
+    {
+        return null;
+    }
     // users_tableにデータを追加する
     public function createdUser(Request $request)
     {

@@ -8,8 +8,12 @@ use Illuminate\Http\Request;
 class ReplyController extends Controller
 {
 
+    public function createReply()
+    {
+        return null;
+    }
     //外部キー制約を遵守するために、thread_idとuser_idを指定して、リプライを作成する   
-    public function createReply(Request $request)
+    public function createdReply(Request $request)
     {
         // リクエストのバリデーション
         if (empty($request->thread_id) || empty($request->body)) {
